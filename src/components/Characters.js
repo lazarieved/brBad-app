@@ -2,11 +2,11 @@ import React from "react";
 import FilterComponent from "./FilterComponent";
 import CharactersList from "./CharactersList";
 import {connect} from "react-redux";
-import {showAllCharacters} from "../actions/actions";
+import {showAllCharacters, showCharacter} from "../actions/actions";
 
 class Characters extends React.Component {
   componentDidMount() {
-    console.log(this.props, 'didMount');
+    console.log(this.props, 'didMount character');
     this.props.showAllCharacters('characters')
   }
   // componentDidUpdate(prevProps, prevState, snapshot) {
@@ -14,7 +14,9 @@ class Characters extends React.Component {
   // }
 
   render() {
-    const {characters} = this.props;
+    const {characters, showCharacter, characterItem} = this.props;
+    console.log(characterItem, 'characterItem');
+
     return (
       <div style={{display: 'flex', flexDirection: 'raw'}}>
         <div className='filter' style={{
@@ -29,6 +31,7 @@ class Characters extends React.Component {
           <span>Characters</span>
           <CharactersList
             characters={characters}
+            showCharacter={showCharacter}
           />
         </div>
       </div>
@@ -40,14 +43,16 @@ const mapStateToProps = store => {
   const {
     charactersReducer: {
       characters = [],
+      characterItem = [],
     }
   } = store;
-  return {characters}
+  return {characters, characterItem}
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     showAllCharacters: url => dispatch(showAllCharacters(url)),
+    showCharacter: url => dispatch(showCharacter(url)),
   }
 };
 

@@ -5,3 +5,23 @@
   margin: 16px 24px 16px 0;
   float: left;
 }
+.container-character-page{
+  display: flex;
+
+}
+.left-side-character-page{
+  width: 500px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+.right-side-character-page{
+  width: 100%;
+  height: 500px;
+  background-color: green;
+}
+.character-page-img{
+
+}

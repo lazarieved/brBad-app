@@ -11,10 +11,18 @@ import "antd/dist/antd.css";
 import Episodes from "./Episodes";
 import CheckYourSelf from "./CheckYourSelf";
 import Characters from "./Characters";
+import EpisodesList from "./EpisodesList";
+import {connect} from "react-redux";
+import {showAllEpisodes} from "../actions/actions";
+import CharacterPage from "./CharacterPage";
 
 const {Header, Content, Footer} = Layout;
 
 class MainMenu extends React.Component {
+  componentDidMount() {
+    console.log(this.props, 'mainmenu props')
+  }
+
   render() {
     return (
       <Router>
@@ -33,7 +41,7 @@ class MainMenu extends React.Component {
                 <Link to='/episodes'>Episodes</Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to='/check_youself'>Check yourself ?</Link>
+                <Link to='/check_yourself'>Check yourself ?</Link>
               </Menu.Item>
             </Menu>
           </Header>
@@ -41,7 +49,13 @@ class MainMenu extends React.Component {
             <Switch>
               <Route path='/' exact component={Characters}/>
               <Route path='/episodes' component={Episodes}/>
-              <Route path='/check_youself' component={CheckYourSelf}/>
+              <Route path='/check_yourself' component={CheckYourSelf}/>
+              <Route path='/episodes/season/1' component={EpisodesList}/>
+              <Route path='/episodes/season/2' component={EpisodesList}/>
+              <Route path='/episodes/season/3' component={EpisodesList}/>
+              <Route path='/episodes/season/4' component={EpisodesList}/>
+              <Route path='/episodes/season/5' component={EpisodesList}/>
+              <Route path='/character-page' component={CharacterPage}/>
             </Switch>
           </Content>
           <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
@@ -51,4 +65,23 @@ class MainMenu extends React.Component {
   }
 }
 
-export default MainMenu;
+
+const mapStateToProps = store => {
+  const {
+    charactersReducer: {
+      characters = [],
+      episodes = [],
+    }
+  } = store;
+  return {characters, episodes}
+};
+
+const mapDispatchToProps = dispatch => {
+  return {}
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MainMenu);
+

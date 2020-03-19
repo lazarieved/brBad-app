@@ -1,10 +1,14 @@
 import React from "react";
 import {List, Card, Rate, notification,} from 'antd';
 import Button from "antd/es/button";
+import {Link} from "react-router-dom";
 
 const { Meta } = Card;
 
 class CharactersList extends React.Component{
+  showCharacter = (item) => () =>{
+    this.props.showCharacter(`characters/${item}`)
+  };
   render() {
     const {characters} = this.props;
     const listItemStyle = {
@@ -43,15 +47,23 @@ class CharactersList extends React.Component{
             <Card
               hoverable
               style={{ width: 240}}
-              cover={<img alt="example" style={imgStyle} src={item.img} />}
+              cover={
+                <Link to='/character-page'>
+                  <img alt="example" style={imgStyle} src={item.img} />
+                </Link>}
               actions={[
                 <Button
                   type="primary"
                   style={buttonStyle}
-                >Open</Button>,
+                  onClick={this.showCharacter(item.char_id)}
+                >
+                  <Link to='/character-page'>Open</Link>
+                </Button>,
               ]}
             >
-              <Meta title={item.name} description={item.nickname} />
+              <Link to='/character-page'>
+                <Meta title={item.name} description={item.nickname} />
+              </Link>
             </Card>
           </List.Item>
         )}

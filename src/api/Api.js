@@ -4,11 +4,10 @@ class Api {
   constructor(baseUrl) {
     this.baseURL = baseUrl;
   }
-
-  // showAllFilms = (url, types, dispatch) => this.handle(types, url, dispatch);
   // showSearchFilms = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showAllCharacters = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showAllEpisodes = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
+  showCharacter = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   typeByStatus = (types, status) => types.find(item => item.includes(status));
   handle = (types, url, dispatch, params = {}) => {
     let config = {
