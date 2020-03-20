@@ -4,7 +4,6 @@ class Api {
   constructor(baseUrl) {
     this.baseURL = baseUrl;
   }
-  // showSearchFilms = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showAllCharacters = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showAllEpisodes = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showSeasonEpisodes = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);

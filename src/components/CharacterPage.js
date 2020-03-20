@@ -4,6 +4,7 @@ import {Button} from "antd";
 import { Typography } from 'antd';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {showCharacter} from "../actions/actions";
 
 const { Title } = Typography;
 const demo = [
@@ -39,17 +40,22 @@ const demoDeath = demo2[0];
 const demoItem = demo[0];
 
 class CharacterPage extends React.Component{
+  componentDidMount() {
+    const {showCharacter, id} = this.props;
+    showCharacter(`characters/${id}`)
+  }
+
   render() {
     const {characterItem} = this.props;
-    let charItem = characterItem[0];
+    let charItem = characterItem[0] || {};
     console.log(charItem, 'charItem');
 
     return (
       <div className='container-character-page'>
         <div className='left-side-character-page'>
-          <img className='character-page-img' src={charItem.img}/>
-          <Title>{demoItem.name}</Title>
-          <Title level={3}>nickname: {demoItem.nickname}</Title>
+          <img className='character-page-img' src={charItem.img} />
+          <Title>{charItem.name}</Title>
+          <Title level={3}>nickname: {charItem.nickname}</Title>
           <Button
             type="primary"
             style={{padding: '10px 20px 35px 20px', fontSize: '18px'}}
@@ -60,11 +66,11 @@ class CharacterPage extends React.Component{
         <div className='right-side-character-page'>
           <Title> Description:</Title>
           <span className='right-side-character-page-span'>
-            Was born: {demoItem.birthday ? demoItem.birthday : 'unknown'}
+            Was born: {charItem.birthday ? charItem.birthday : 'unknown'}
           </span>
-          <span className='right-side-character-page-span'> Occupation: {demoItem.occupation.join(',')}</span>
-          <span className='right-side-character-page-span'> Status: {demoItem.status}</span>
-          <span className='right-side-character-page-span'> Actor: {demoItem.portrayed}</span>
+          <span className='right-side-character-page-span'> Occupation: {charItem.occupation}</span>
+          <span className='right-side-character-page-span'> Status: {charItem.status}</span>
+          <span className='right-side-character-page-span'> Actor: {charItem.portrayed}</span>
           <span className='right-side-character-page-span'>
             Killed: {demoDeath.deathCount} {demoDeath.deathCount > 1 ? 'peaple' : 'perosn'}
           </span>
@@ -74,17 +80,20 @@ class CharacterPage extends React.Component{
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store, props) => {
   const {
     charactersReducer: {
       characterItem = [],
     }
   } = store;
-  return {characterItem}
+  const {match: {params: {id}}} = props;
+  return {characterItem, id}
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    showCharacter: url => dispatch(showCharacter(url)),
+  }
 };
 
 export default connect(

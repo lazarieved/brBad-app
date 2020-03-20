@@ -55,7 +55,7 @@ class MainMenu extends React.Component {
               <Route path='/episodes/season/5' component={EpisodesList}/>
               <Route path='/episodes' component={Episodes}/>
               <Route path='/check_yourself' component={CheckYourSelf}/>
-              <Route path='/character-page' component={CharacterPage}/>
+              <Route path='/character-page/:id' component={CharacterPage}/>
             </Switch>
           </Content>
           <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>

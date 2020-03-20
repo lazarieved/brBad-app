@@ -26,7 +26,7 @@ export function episodeReducer(state = initialState, action) {
       console.log(action.payload, 'payload GET_EPISODES_SEASON_SUCCESS');
       return {
         ...state,
-        episodesSeason:  action.payload.data
+        episodesSeason: action.payload.data
       };
     case GET_EPISODES_SEASON_REQUEST:
       console.log(action.payload, 'payload GET_EPISODES_SEASON_REQUEST');

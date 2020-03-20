@@ -45,7 +45,7 @@ class CharactersList extends React.Component {
         }
         renderItem={item => (
           <List.Item style={listItemStyle}>
-            <Link to='/character-page'>
+            <Link to={`/character-page/${item.char_id}`}>
               <Card
                 onClick={this.showCharacter(item.char_id)}
                 hoverable
