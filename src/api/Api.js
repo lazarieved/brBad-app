@@ -7,6 +7,7 @@ class Api {
   // showSearchFilms = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showAllCharacters = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showAllEpisodes = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
+  showSeasonEpisodes = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showCharacter = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   typeByStatus = (types, status) => types.find(item => item.includes(status));
   handle = (types, url, dispatch, params = {}) => {

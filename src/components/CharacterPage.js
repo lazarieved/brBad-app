@@ -3,6 +3,7 @@ import '../index.css'
 import {Button} from "antd";
 import { Typography } from 'antd';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 const { Title } = Typography;
 const demo = [
@@ -28,16 +29,27 @@ const demo = [
     "better_call_saul_appearance": []
   }
 ];
+const demo2 = [
+  {
+    "name": "Jesse Pinkman",
+    "deathCount": 3
+  }
+];
+const demoDeath = demo2[0];
 const demoItem = demo[0];
 
 class CharacterPage extends React.Component{
   render() {
+    const {characterItem} = this.props;
+    let charItem = characterItem[0];
+    console.log(charItem, 'charItem');
+
     return (
       <div className='container-character-page'>
         <div className='left-side-character-page'>
-          <img className='character-page-img' src={demoItem.img}></img>
+          <img className='character-page-img' src={charItem.img}/>
           <Title>{demoItem.name}</Title>
-          <Title level={3}>{demoItem.nickname}</Title>
+          <Title level={3}>nickname: {demoItem.nickname}</Title>
           <Button
             type="primary"
             style={{padding: '10px 20px 35px 20px', fontSize: '18px'}}
@@ -46,11 +58,36 @@ class CharacterPage extends React.Component{
           </Button>
         </div>
         <div className='right-side-character-page'>
-
+          <Title> Description:</Title>
+          <span className='right-side-character-page-span'>
+            Was born: {demoItem.birthday ? demoItem.birthday : 'unknown'}
+          </span>
+          <span className='right-side-character-page-span'> Occupation: {demoItem.occupation.join(',')}</span>
+          <span className='right-side-character-page-span'> Status: {demoItem.status}</span>
+          <span className='right-side-character-page-span'> Actor: {demoItem.portrayed}</span>
+          <span className='right-side-character-page-span'>
+            Killed: {demoDeath.deathCount} {demoDeath.deathCount > 1 ? 'peaple' : 'perosn'}
+          </span>
         </div>
       </div>
     );
   }
 }
 
-export default CharacterPage;
+const mapStateToProps = store => {
+  const {
+    charactersReducer: {
+      characterItem = [],
+    }
+  } = store;
+  return {characterItem}
+};
+
+const mapDispatchToProps = dispatch => {
+  return {}
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CharacterPage);

@@ -19,9 +19,22 @@
 }
 .right-side-character-page{
   width: 100%;
-  height: 500px;
-  background-color: green;
+  padding: 50px 30px 30px 60px;
 }
 .character-page-img{
 
+}
+.right-side-character-page-span{
+  display: block;
+  margin: 10px;
+  font-size: 20px;
+}
+.div-episodes{
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

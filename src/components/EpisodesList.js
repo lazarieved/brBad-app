@@ -1,6 +1,9 @@
 import React from "react";
 import {List, Card, Rate, notification,} from 'antd';
 import Button from "antd/es/button";
+import {getSeasonNumber, showAllEpisodes, showSeasonEpisodes} from "../actions/actions";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -10,7 +13,8 @@ class EpisodesList extends React.Component{
   }
 
   render() {
-    const {episodes} = this.props;
+    const {episodes, seasonNumber} = this.props;
+    console.log(seasonNumber, 'seasonNumber episodesList')
     const listItemStyle = {
       padding: '20px'
     };
@@ -28,51 +32,78 @@ class EpisodesList extends React.Component{
       width: '105px',
       padding: '0'
     };
+    const actualSeasonEpisodes = episodes.filter(item => item.season === seasonNumber);
+    console.log(actualSeasonEpisodes, 'actualSeasonEpisodes');
 
     return (
-      <List
-        grid={{
-          gutter: 16,
-          xs: 1,
-          sm: 2,
-          md: 4,
-          lg: 4,
-          xl: 4,
-          xxl: 5,
-        }}
-        dataSource={episodes}
-        pagination={
-          {
-            position: 'bottom',
-            pageSize: 12,
+      <div>
+        <Button type="primary">
+          <Link to='/episodes'>⤶ Back</Link>
+        </Button>
+        <List
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 2,
+            md: 4,
+            lg: 4,
+            xl: 4,
+            xxl: 5,
+          }}
+          dataSource={actualSeasonEpisodes}
+          pagination={
+            {
+              position: 'bottom',
+              pageSize: 12,
+            }
           }
-        }
-        renderItem={item => (
-          <List.Item style={listItemStyle}>
-            <Card
-              hoverable
-              style={{ width: 240}}
-              cover={<img alt="example" style={imgStyle} src={
-                item.season === '1' ? seasonImg1
-                : item.season === ' 1' ? seasonImg1
-                : item.season === '2' ? seasonImg2
-                : item.season === '3' ? seasonImg3
-                : item.season === '4' ? seasonImg4
-                : seasonImg5
-              } />}
-              actions={[
-                <Button
-                  type="primary"
-                  style={buttonStyle}
-                >Open</Button>,
-              ]}
-            >
-              <Meta title={`Season: ${item.season}, Episode: ${item.episode}`} description={item.title} />
-            </Card>
-          </List.Item>
-        )}
-      />
+          renderItem={item => (
+            <List.Item style={listItemStyle}>
+              <Card
+                hoverable
+                style={{ width: 240}}
+                cover={<img alt="example" style={imgStyle} src={
+                  item.season === '1' ? seasonImg1
+                    : item.season === ' 1' ? seasonImg1
+                    : item.season === '2' ? seasonImg2
+                      : item.season === '3' ? seasonImg3
+                        : item.season === '4' ? seasonImg4
+                          : seasonImg5
+                } />}
+                actions={[
+                  <Button
+                    type="primary"
+                    style={buttonStyle}
+                  >Open</Button>,
+                ]}
+              >
+                <Meta title={`Season: ${item.season}, Episode: ${item.episode}`} description={item.title} />
+              </Card>
+            </List.Item>
+          )}
+        />
+      </div>
     );
   }
 }
-export default EpisodesList;
+
+const mapStateToProps = store => {
+  const {
+    episodeReducer: {
+      episodes = [],
+      episodesSeason = [],
+      seasonNumber = 1,
+    }
+  } = store;
+  return {episodes, episodesSeason, seasonNumber}
+};
+
+const mapDispatchToProps = dispatch => {
+  return {}
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EpisodesList);
+

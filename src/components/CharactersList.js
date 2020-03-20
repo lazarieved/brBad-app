@@ -3,12 +3,13 @@ import {List, Card, Rate, notification,} from 'antd';
 import Button from "antd/es/button";
 import {Link} from "react-router-dom";
 
-const { Meta } = Card;
+const {Meta} = Card;
 
-class CharactersList extends React.Component{
-  showCharacter = (item) => () =>{
+class CharactersList extends React.Component {
+  showCharacter = (item) => () => {
     this.props.showCharacter(`characters/${item}`)
   };
+
   render() {
     const {characters} = this.props;
     const listItemStyle = {
@@ -44,31 +45,31 @@ class CharactersList extends React.Component{
         }
         renderItem={item => (
           <List.Item style={listItemStyle}>
-            <Card
-              hoverable
-              style={{ width: 240}}
-              cover={
-                <Link to='/character-page'>
-                  <img alt="example" style={imgStyle} src={item.img} />
-                </Link>}
-              actions={[
-                <Button
-                  type="primary"
-                  style={buttonStyle}
-                  onClick={this.showCharacter(item.char_id)}
-                >
-                  <Link to='/character-page'>Open</Link>
-                </Button>,
-              ]}
-            >
-              <Link to='/character-page'>
-                <Meta title={item.name} description={item.nickname} />
-              </Link>
-            </Card>
+            <Link to='/character-page'>
+              <Card
+                onClick={this.showCharacter(item.char_id)}
+                hoverable
+                style={{width: 240}}
+                cover={
+                  <img alt="example" style={imgStyle} src={item.img}/>
+                }
+                actions={[
+                  <Button
+                    type="primary"
+                    style={buttonStyle}
+                    onClick={this.showCharacter(item.char_id)}
+                  >
+                    <Link to='/character-page'>Open</Link>
+                  </Button>,
+                ]}
+              >
+                <Meta title={item.name} description={item.nickname}/>
+              </Card></Link>
           </List.Item>
         )}
       />
     );
   }
 }
+
 export default CharactersList;

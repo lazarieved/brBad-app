@@ -48,13 +48,13 @@ class MainMenu extends React.Component {
           <Content style={{padding: '50px'}}>
             <Switch>
               <Route path='/' exact component={Characters}/>
-              <Route path='/episodes' component={Episodes}/>
-              <Route path='/check_yourself' component={CheckYourSelf}/>
               <Route path='/episodes/season/1' component={EpisodesList}/>
               <Route path='/episodes/season/2' component={EpisodesList}/>
               <Route path='/episodes/season/3' component={EpisodesList}/>
               <Route path='/episodes/season/4' component={EpisodesList}/>
               <Route path='/episodes/season/5' component={EpisodesList}/>
+              <Route path='/episodes' component={Episodes}/>
+              <Route path='/check_yourself' component={CheckYourSelf}/>
               <Route path='/character-page' component={CharacterPage}/>
             </Switch>
           </Content>
