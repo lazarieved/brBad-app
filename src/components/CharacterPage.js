@@ -7,29 +7,7 @@ import {connect} from "react-redux";
 import {showCharacter} from "../actions/actions";
 
 const { Title } = Typography;
-const demo = [
-  {
-    "char_id": 2,
-    "name": "Jesse Pinkman",
-    "birthday": "09-24-1984",
-    "occupation": [
-      "Meth Dealer"
-    ],
-    "img": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg",
-    "status": "Alive",
-    "nickname": "Cap n' Cook",
-    "appearance": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "portrayed": "Aaron Paul",
-    "category": "Breaking Bad",
-    "better_call_saul_appearance": []
-  }
-];
+
 const demo2 = [
   {
     "name": "Jesse Pinkman",
@@ -37,7 +15,6 @@ const demo2 = [
   }
 ];
 const demoDeath = demo2[0];
-const demoItem = demo[0];
 
 class CharacterPage extends React.Component{
   componentDidMount() {
@@ -52,6 +29,9 @@ class CharacterPage extends React.Component{
 
     return (
       <div className='container-character-page'>
+        <Button type="primary">
+          <Link to={`/`}>⤶ Back</Link>
+        </Button>
         <div className='left-side-character-page'>
           <img className='character-page-img' src={charItem.img} />
           <Title>{charItem.name}</Title>

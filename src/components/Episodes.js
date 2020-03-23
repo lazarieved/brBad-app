@@ -25,14 +25,6 @@ class Episodes extends React.Component{
     return (
       <div>
         <div style={{display: 'flex', flexDirection: 'raw'}}>
-          <div className='filter' style={{
-            width: '300px',
-            height: '800px',
-            background: '#fff', padding: 24,
-            marginRight: '20px'
-          }}>
-            <FilterComponent />
-          </div>
           <div className='div-episodes'>
             <span style={buttonStyle} >Episodes:</span>
             <Button type="primary" style={buttonStyle} onClick={this.getSeasonNumber('1')}>

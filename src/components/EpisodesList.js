@@ -5,9 +5,9 @@ import {getSeasonNumber, showAllEpisodes, showSeasonEpisodes} from "../actions/a
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
-const { Meta } = Card;
+const {Meta} = Card;
 
-class EpisodesList extends React.Component{
+class EpisodesList extends React.Component {
   componentDidMount() {
     console.log(this.props, 'props episodlist')
   }
@@ -59,26 +59,28 @@ class EpisodesList extends React.Component{
           }
           renderItem={item => (
             <List.Item style={listItemStyle}>
-              <Card
-                hoverable
-                style={{ width: 240}}
-                cover={<img alt="example" style={imgStyle} src={
-                  item.season === '1' ? seasonImg1
-                    : item.season === ' 1' ? seasonImg1
-                    : item.season === '2' ? seasonImg2
-                      : item.season === '3' ? seasonImg3
-                        : item.season === '4' ? seasonImg4
-                          : seasonImg5
-                } />}
-                actions={[
-                  <Button
-                    type="primary"
-                    style={buttonStyle}
-                  >Open</Button>,
-                ]}
-              >
-                <Meta title={`Season: ${item.season}, Episode: ${item.episode}`} description={item.title} />
-              </Card>
+              <Link to={`/episode-page/${item.episode_id}`}>
+                <Card
+                  hoverable
+                  style={{width: 240}}
+                  cover={<img alt="example" style={imgStyle} src={
+                    item.season === '1' ? seasonImg1
+                      : item.season === ' 1' ? seasonImg1
+                      : item.season === '2' ? seasonImg2
+                        : item.season === '3' ? seasonImg3
+                          : item.season === '4' ? seasonImg4
+                            : seasonImg5
+                  }/>}
+                  actions={[
+                    <Button
+                      type="primary"
+                      style={buttonStyle}
+                    >Open</Button>,
+                  ]}
+                >
+                  <Meta title={`Season: ${item.season}, Episode: ${item.episode}`} description={item.title}/>
+                </Card>
+              </Link>
             </List.Item>
           )}
         />

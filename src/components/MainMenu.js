@@ -13,8 +13,8 @@ import CheckYourSelf from "./CheckYourSelf";
 import Characters from "./Characters";
 import EpisodesList from "./EpisodesList";
 import {connect} from "react-redux";
-import {showAllEpisodes} from "../actions/actions";
 import CharacterPage from "./CharacterPage";
+import EpisodePage from "./EpisodePage";
 
 const {Header, Content, Footer} = Layout;
 
@@ -56,6 +56,7 @@ class MainMenu extends React.Component {
               <Route path='/episodes' component={Episodes}/>
               <Route path='/check_yourself' component={CheckYourSelf}/>
               <Route path='/character-page/:id' component={CharacterPage}/>
+              <Route path='/episode-page/:id' component={EpisodePage}/>
             </Switch>
           </Content>
           <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>

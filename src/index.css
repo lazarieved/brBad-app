@@ -22,7 +22,7 @@
   padding: 50px 30px 30px 60px;
 }
 .character-page-img{
-
+  width: 90%;
 }
 .right-side-character-page-span{
   display: block;
@@ -37,4 +37,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+.quiz-div{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 500px;
+  height: 100px;
+  align-content: space-between;
 }

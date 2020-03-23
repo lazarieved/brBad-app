@@ -12,7 +12,7 @@ import {
   GET_EPISODES_SEASON_REQUEST,
   GET_EPISODES_SEASON_FAILED,
   GET_EPISODES_SEASON_SUCCESS,
-  GET_SEASON_NUM,
+  GET_SEASON_NUM, SHOW_EPISODE_REQUEST, SHOW_EPISODE_SUCCESS, SHOW_EPISODE_FAILED,
 } from "../constants/constants";
 
 export const showAllCharacters = url => dispatch => {
@@ -39,4 +39,8 @@ export const getSeasonNumber = num => {
 export const showCharacter = (url) => dispatch => {
   const types = [SHOW_CHARACTER_REQUEST, SHOW_CHARACTER_SUCCESS, SHOW_CHARACTER_FAILED];
   return Api.showCharacter(url, types, dispatch)
+};
+export const showEpisode = (url) => dispatch => {
+  const types = [SHOW_EPISODE_REQUEST, SHOW_EPISODE_SUCCESS, SHOW_EPISODE_FAILED];
+  return Api.showEpisode(url, types, dispatch)
 };
