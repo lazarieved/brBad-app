@@ -41,11 +41,11 @@ class MainMenu extends React.Component {
                 <Link to='/episodes'>Episodes</Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to='/check_yourself'>Check yourself ?</Link>
+                <Link to='/check-yourself'>Check yourself ?</Link>
               </Menu.Item>
             </Menu>
           </Header>
-          <Content style={{padding: '50px'}}>
+          <Content style={{padding: '50px', minHeight: '802px'}}>
             <Switch>
               <Route path='/' exact component={Characters}/>
               <Route path='/episodes/season/1' component={EpisodesList}/>
@@ -54,12 +54,12 @@ class MainMenu extends React.Component {
               <Route path='/episodes/season/4' component={EpisodesList}/>
               <Route path='/episodes/season/5' component={EpisodesList}/>
               <Route path='/episodes' component={Episodes}/>
-              <Route path='/check_yourself' component={CheckYourSelf}/>
+              <Route path='/check-yourself' component={CheckYourSelf}/>
               <Route path='/character-page/:id' component={CharacterPage}/>
               <Route path='/episode-page/:id' component={EpisodePage}/>
             </Switch>
           </Content>
-          <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
+          <Footer style={{textAlign: 'center'}} />
         </Layout>
       </Router>
     );

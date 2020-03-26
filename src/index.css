@@ -9,6 +9,9 @@
   display: flex;
 
 }
+body{
+  margin: 0;
+}
 .left-side-character-page{
   width: 500px;
   margin-right: 25px;
@@ -40,9 +43,16 @@
 }
 .quiz-div{
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  width: 500px;
-  height: 100px;
   align-content: space-between;
+}
+.div-button{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+.quiz-main-button-div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

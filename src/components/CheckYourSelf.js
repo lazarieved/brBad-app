@@ -27,9 +27,12 @@ let randomInteger = (min, max) => {
 
 class CheckYourSelf extends React.Component{
   state = {
-    randomValue1: 'unknown',
-    randomValue2: 'unknown',
-    randomValue3: 'unknown',
+    randomNick1: 'unknown',
+    randomNick2: 'unknown',
+    randomNick3: 'unknown',
+    randomActor1: 'unknown',
+    randomActor2: 'unknown',
+    randomActor3: 'unknown',
     isOpenedQuiz: false,
   };
 
@@ -48,9 +51,12 @@ class CheckYourSelf extends React.Component{
   openQuiz = () => {
     const {characters} = this.props;
     this.setState({
-      randomValue1: characters[randomInteger(1, 62)].nickname,
-      randomValue2: characters[randomInteger(1, 62)].nickname,
-      randomValue3: characters[randomInteger(1, 62)].nickname,
+      randomNick1: characters[randomInteger(1, 62)].nickname,
+      randomNick2: characters[randomInteger(1, 62)].nickname,
+      randomNick3: characters[randomInteger(1, 62)].nickname,
+      randomActor1: characters[randomInteger(1, 62)].portrayed,
+      randomActor2: characters[randomInteger(1, 62)].portrayed,
+      randomActor3: characters[randomInteger(1, 62)].portrayed,
       isOpenedQuiz: true,
     });
   };

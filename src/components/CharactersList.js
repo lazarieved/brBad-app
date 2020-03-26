@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Card, Rate, notification,} from 'antd';
+import {List, Card} from 'antd';
 import Button from "antd/es/button";
 import {Link} from "react-router-dom";
 
@@ -11,7 +11,7 @@ class CharactersList extends React.Component {
   };
 
   render() {
-    const {characters} = this.props;
+    const {characters, searchCharacters} = this.props;
     const listItemStyle = {
       padding: '20px'
     };
@@ -24,6 +24,12 @@ class CharactersList extends React.Component {
       width: '105px',
       padding: '0'
     };
+    let charList;
+    if(searchCharacters.length) {
+      charList = searchCharacters
+    } else {
+      charList = characters;
+    }
 
     return (
       <List
@@ -36,7 +42,7 @@ class CharactersList extends React.Component {
           xl: 4,
           xxl: 5,
         }}
-        dataSource={characters}
+        dataSource={charList}
         pagination={
           {
             position: 'bottom',

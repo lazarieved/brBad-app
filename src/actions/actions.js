@@ -12,7 +12,16 @@ import {
   GET_EPISODES_SEASON_REQUEST,
   GET_EPISODES_SEASON_FAILED,
   GET_EPISODES_SEASON_SUCCESS,
-  GET_SEASON_NUM, SHOW_EPISODE_REQUEST, SHOW_EPISODE_SUCCESS, SHOW_EPISODE_FAILED,
+  GET_SEASON_NUM,
+  SHOW_EPISODE_REQUEST,
+  SHOW_EPISODE_SUCCESS,
+  SHOW_EPISODE_FAILED,
+  SHOW_SEARCH_CHARACTER_REQUEST,
+  SHOW_SEARCH_CHARACTER_SUCCESS,
+  SHOW_SEARCH_CHARACTER_FAILED,
+  GET_ALIVE_CHARACTERS,
+  GET_DEAD_CHARACTERS,
+  GET_ALL_CHARACTERS,
 } from "../constants/constants";
 
 export const showAllCharacters = url => dispatch => {
@@ -43,4 +52,23 @@ export const showCharacter = (url) => dispatch => {
 export const showEpisode = (url) => dispatch => {
   const types = [SHOW_EPISODE_REQUEST, SHOW_EPISODE_SUCCESS, SHOW_EPISODE_FAILED];
   return Api.showEpisode(url, types, dispatch)
+};
+export const showSearchCharacters = (searchValue) => dispatch => {
+  const params = {
+    name: searchValue,
+  };
+  const types = [SHOW_SEARCH_CHARACTER_REQUEST, SHOW_SEARCH_CHARACTER_SUCCESS, SHOW_SEARCH_CHARACTER_FAILED];
+  return Api.showSearchCharacters('characters', types, dispatch, params)
+};
+export const getAliveCharacters = () => {
+  return {
+    type: GET_ALIVE_CHARACTERS,
+    payload: "Alive",
+  }
+};
+export const getDeadCharacters = () => {
+  return {
+    type: GET_DEAD_CHARACTERS,
+    payload: "Alive",
+  }
 };

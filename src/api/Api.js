@@ -9,6 +9,7 @@ class Api {
   showSeasonEpisodes = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showCharacter = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   showEpisode = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
+  showSearchCharacters = (url, types, dispatch, params) => this.handle(types, url, dispatch, params);
   typeByStatus = (types, status) => types.find(item => item.includes(status));
   handle = (types, url, dispatch, params = {}) => {
     let config = {
