@@ -4,7 +4,7 @@ import CharactersList from "./CharactersList";
 import {connect} from "react-redux";
 import { Typography } from 'antd';
 import {
-  getAliveCharacters, getAllCharacters,
+  getAliveCharacters,
   getDeadCharacters,
   showAllCharacters,
   showCharacter,
@@ -15,34 +15,40 @@ const { Title } = Typography;
 
 class Characters extends React.Component {
   componentDidMount() {
-    console.log(this.props, 'didMount character');
     this.props.showAllCharacters('characters')
   }
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   console.log(this.props, 'didUpdate')
-  // }
 
   render() {
     const {
       characters,
       showCharacter,
-      characterItem,
       showSearchCharacters,
       searchCharacters,
       getAliveCharacters,
       showAllCharacters,
       getDeadCharacters,
     } = this.props;
-    console.log(characterItem, 'characterItem');
+    const divStyle1 = {
+      width: '300px',
+      height: '800px',
+      background: '#fff',
+      padding: 24,
+      marginRight: '20px'
+    };
+    const divStyle2 = {
+      background: '#fff',
+      padding: 24,
+      minHeight: 280,
+      width: '100%'
+    };
+    const divStyle0 = {
+      display: 'flex',
+      flexDirection: 'raw'
+    };
 
     return (
-      <div style={{display: 'flex', flexDirection: 'raw'}}>
-        <div className='filter' style={{
-          width: '300px',
-          height: '800px',
-          background: '#fff', padding: 24,
-          marginRight: '20px'
-        }}>
+      <div style={divStyle0}>
+        <div className='filter' style={divStyle1}>
           <FilterComponent
             showSearchCharacters={showSearchCharacters}
             getAliveCharacters={getAliveCharacters}
@@ -50,7 +56,7 @@ class Characters extends React.Component {
             getDeadCharacters={getDeadCharacters}
           />
         </div>
-        <div style={{background: '#fff', padding: 24, minHeight: 280, width: '100%'}}>
+        <div style={divStyle2}>
           <Title>Characters</Title>
           <CharactersList
             characters={characters}
@@ -88,4 +94,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Characters);
-

@@ -1,20 +1,15 @@
 import React from "react";
-import {List, Card, Rate, notification,} from 'antd';
+import {List, Card} from 'antd';
 import Button from "antd/es/button";
-import {getSeasonNumber, showAllEpisodes, showSeasonEpisodes} from "../actions/actions";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 const {Meta} = Card;
 
 class EpisodesList extends React.Component {
-  componentDidMount() {
-    console.log(this.props, 'props episodlist')
-  }
 
   render() {
     const {episodes, seasonNumber} = this.props;
-    console.log(seasonNumber, 'seasonNumber episodesList')
     const listItemStyle = {
       padding: '20px'
     };
@@ -33,7 +28,6 @@ class EpisodesList extends React.Component {
       padding: '0'
     };
     const actualSeasonEpisodes = episodes.filter(item => item.season === seasonNumber);
-    console.log(actualSeasonEpisodes, 'actualSeasonEpisodes');
 
     return (
       <div>
@@ -70,7 +64,7 @@ class EpisodesList extends React.Component {
                         : item.season === '3' ? seasonImg3
                           : item.season === '4' ? seasonImg4
                             : seasonImg5
-                  }/>}
+                  } />}
                   actions={[
                     <Button
                       type="primary"
@@ -78,7 +72,7 @@ class EpisodesList extends React.Component {
                     >Open</Button>,
                   ]}
                 >
-                  <Meta title={`Season: ${item.season}, Episode: ${item.episode}`} description={item.title}/>
+                  <Meta title={`Season: ${item.season}, Episode: ${item.episode}`} description={item.title} />
                 </Card>
               </Link>
             </List.Item>
@@ -108,4 +102,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(EpisodesList);
-

@@ -19,20 +19,28 @@ import EpisodePage from "./EpisodePage";
 const {Header, Content, Footer} = Layout;
 
 class MainMenu extends React.Component {
-  componentDidMount() {
-    console.log(this.props, 'mainmenu props')
-  }
 
   render() {
+    const menuStyle = {
+      lineHeight: '64px'
+    };
+    const contentStyle = {
+      padding: '50px',
+      minHeight: '802px'
+    };
+    const footerStyle = {
+      textAlign: 'center'
+    };
+
     return (
       <Router>
         <Layout className="layout">
           <Header>
-            <div className="logo"/>
+            <div className="logo" />
             <Menu
               theme="dark"
               mode="horizontal"
-              style={{lineHeight: '64px'}}
+              style={menuStyle}
             >
               <Menu.Item key="1">
                 <Link to='/'>Characters</Link>
@@ -45,21 +53,22 @@ class MainMenu extends React.Component {
               </Menu.Item>
             </Menu>
           </Header>
-          <Content style={{padding: '50px', minHeight: '802px'}}>
+          <Content style={contentStyle}>
             <Switch>
-              <Route path='/' exact component={Characters}/>
-              <Route path='/episodes/season/1' component={EpisodesList}/>
-              <Route path='/episodes/season/2' component={EpisodesList}/>
-              <Route path='/episodes/season/3' component={EpisodesList}/>
-              <Route path='/episodes/season/4' component={EpisodesList}/>
-              <Route path='/episodes/season/5' component={EpisodesList}/>
-              <Route path='/episodes' component={Episodes}/>
-              <Route path='/check-yourself' component={CheckYourSelf}/>
-              <Route path='/character-page/:id' component={CharacterPage}/>
-              <Route path='/episode-page/:id' component={EpisodePage}/>
+              <Route path='/' exact component={Characters} />
+              <Route path='/episodes/season/1' component={EpisodesList} />
+              <Route path='/episodes/season/2' component={EpisodesList} />
+              <Route path='/episodes/season/3' component={EpisodesList} />
+              <Route path='/episodes/season/4' component={EpisodesList} />
+              <Route path='/episodes/season/5' component={EpisodesList} />
+              <Route path='/episodes' component={Episodes} />
+              <Route path='/check-yourself/:id' component={CheckYourSelf} />
+              <Route path='/check-yourself' component={CheckYourSelf} />
+              <Route path='/character-page/:id' component={CharacterPage} />
+              <Route path='/episode-page/:id' component={EpisodePage} />
             </Switch>
           </Content>
-          <Footer style={{textAlign: 'center'}} />
+          <Footer style={footerStyle} />
         </Layout>
       </Router>
     );
@@ -85,4 +94,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(MainMenu);
-

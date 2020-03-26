@@ -69,7 +69,7 @@ class CharactersList extends React.Component {
                   </Button>,
                 ]}
               >
-                <Meta title={item.name} description={item.nickname}/>
+                <Meta title={item.name} description={item.nickname} />
               </Card></Link>
           </List.Item>
         )}

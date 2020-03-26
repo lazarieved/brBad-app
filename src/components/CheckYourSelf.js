@@ -22,6 +22,7 @@ const demoItem = {
 };
 let randomInteger = (min, max) => {
   let rand = min - 0.5 + Math.random() * (max - min + 1);
+
   return Math.round(rand);
 };
 
@@ -45,18 +46,18 @@ class CheckYourSelf extends React.Component{
       url = `character/random`
     }
     showAllCharacters('characters');
-    showCharacter('character/random');
+    showCharacter(url);
 
   }
   openQuiz = () => {
     const {characters} = this.props;
     this.setState({
-      randomNick1: characters[randomInteger(1, 62)].nickname,
-      randomNick2: characters[randomInteger(1, 62)].nickname,
-      randomNick3: characters[randomInteger(1, 62)].nickname,
-      randomActor1: characters[randomInteger(1, 62)].portrayed,
-      randomActor2: characters[randomInteger(1, 62)].portrayed,
-      randomActor3: characters[randomInteger(1, 62)].portrayed,
+      randomNick1: (characters[randomInteger(1, 62)] || []).nickname,
+      randomNick2: (characters[randomInteger(1, 62)] || []).nickname,
+      randomNick3: (characters[randomInteger(1, 62)] || []).nickname,
+      randomActor1: (characters[randomInteger(1, 62)] || []).portrayed,
+      randomActor2: (characters[randomInteger(1, 62)] || []).portrayed,
+      randomActor3: (characters[randomInteger(1, 62)] || []).portrayed,
       isOpenedQuiz: true,
     });
   };
@@ -64,7 +65,8 @@ class CheckYourSelf extends React.Component{
   render() {
     const {characterItem, characters} = this.props;
     let charItem = characterItem[0] || {};
-    console.log(charItem, 'charItem in CHECKYOURSELF');
+    const {name, img, } = charItem;
+    const {isOpenedQuiz} = this.state;
 
     return (
       <div className='container-character-page'>
@@ -72,12 +74,12 @@ class CheckYourSelf extends React.Component{
           <Link to={`/`}>⤶ Back</Link>
         </Button>
         <div className='left-side-character-page'>
-          <img className='character-page-img' src={charItem.img ? charItem.img : demoItem.img} />
-          <Title>{charItem.name ? charItem.name : demoItem.name}</Title>
+          <img className='character-page-img' src={img ? img : demoItem.img} />
+          <Title>{name ? name : demoItem.name}</Title>
         </div>
         <div className='right-side-character-page'>
-          {this.state.isOpenedQuiz ? null : <Button type='primary' onClick={this.openQuiz}>Open QUIZ</Button>}
-          {this.state.isOpenedQuiz ?
+          {isOpenedQuiz ? null : <Button type='primary' onClick={this.openQuiz}>Open QUIZ</Button>}
+          {isOpenedQuiz ?
             <Quiz
             charItem={charItem}
             demoItem={demoItem}

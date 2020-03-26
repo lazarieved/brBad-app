@@ -1,9 +1,8 @@
 import React from "react";
-import {Input, Typography} from 'antd';
+import {Input} from 'antd';
 import Button from "antd/es/button";
 
 const {Search} = Input;
-const {Title} = Typography;
 
 class FilterComponent extends React.Component {
   state = {
@@ -42,21 +41,33 @@ class FilterComponent extends React.Component {
 
   render() {
     const {showSearchCharacters} = this.props;
+    const searchStyle = {
+      width: 200,
+      marginBottom: '20px'
+    };
+    const {loadingAlive, loadingDead} = this.state;
+    const buttonStyle = {
+      width: 200,
+      marginBottom: '10px'
+    };
+
     return (
       <div>
         <Search
           placeholder="input character"
           onSearch={value => showSearchCharacters(value)}
-          style={{width: 200, marginBottom: '20px'}}
+          style={searchStyle}
         />
         <br/>
-        <Button type="primary" loading={this.state.loadingAlive} style={{width: 200, marginBottom: '10px'}}
+        <Button type="primary" loading={loadingAlive} style={buttonStyle}
                 onClick={this.getAliceCharacters}> Alive </Button>
         <br/>
-        <Button type="primary" loading={this.state.loadingDead} style={{width: 200, marginBottom: '10px'}}
+        <Button type="primary" loading={loadingDead} style={buttonStyle}
                 onClick={this.getDeadCharacters}> Dead </Button>
         <br/>
-        <Button type="primary" style={{width: 200, marginBottom: '10px'}} onClick={this.getAllCharacters}> All </Button>
+        <Button type="primary" style={buttonStyle} onClick={this.getAllCharacters}>
+          All
+        </Button>
       </div>
     );
   }

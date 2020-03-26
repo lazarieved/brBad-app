@@ -1,32 +1,35 @@
 import React from "react";
-import FilterComponent from "./FilterComponent";
-import EpisodesList from "./EpisodesList";
-import {getSeasonNumber, showAllCharacters, showAllEpisodes, showSeasonEpisodes} from "../actions/actions";
+import {getSeasonNumber, showAllEpisodes, showSeasonEpisodes} from "../actions/actions";
 import {connect} from "react-redux";
 import Button from "antd/es/button";
 import {Link} from "react-router-dom";
 import '../index.css'
 
-class Episodes extends React.Component{
+class Episodes extends React.Component {
   componentDidMount() {
-    this.props.showAllEpisodes('episodes');
-    console.log(this.props, 'episodes props')
+    const {showAllEpisodes} = this.props;
+    showAllEpisodes('episodes');
   }
+
   getSeasonNumber = (num) => () => {
-    this.props.getSeasonNumber(num);
+    const {getSeasonNumber} = this.props;
+    getSeasonNumber(num);
   };
 
   render() {
-    const {episodes} = this.props;
     const buttonStyle = {
       margin: '10px', fontSize: '18px'
+    };
+    const divStyle = {
+      display: 'flex',
+      flexDirection: 'raw'
     };
 
     return (
       <div>
-        <div style={{display: 'flex', flexDirection: 'raw'}}>
+        <div style={divStyle}>
           <div className='div-episodes'>
-            <span style={buttonStyle} >Episodes:</span>
+            <span style={buttonStyle}>Episodes:</span>
             <Button type="primary" style={buttonStyle} onClick={this.getSeasonNumber('1')}>
               <Link to='/episodes/season/1'>1 season</Link>
             </Button>
@@ -42,7 +45,6 @@ class Episodes extends React.Component{
             <Button type="primary" style={buttonStyle} onClick={this.getSeasonNumber('5')}>
               <Link to='/episodes/season/5'>5 season</Link>
             </Button>
-            {/*<EpisodesList episodes={episodes} />*/}
           </div>
         </div>
       </div>

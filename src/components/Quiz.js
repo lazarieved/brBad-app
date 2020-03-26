@@ -1,17 +1,7 @@
 import React from "react";
 import {Button, Typography} from "antd";
-import {Link} from "react-router-dom";
-import {showAllCharacters, showCharacter} from "../actions/actions";
-import {connect} from "react-redux";
 
 const {Title} = Typography;
-let randomInteger = (min, max) => {
-  let rand = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rand);
-};
-let contains = (arr, str) => {
-  return arr.indexOf( str ) !== -1
-};
 
 class Quiz extends React.Component {
   state = {
@@ -21,21 +11,10 @@ class Quiz extends React.Component {
     isOpen: [],
   };
 
-  // componentDidMount() {
-  //   const {characters} = this.props;
-  //     console.log(characters, 'didMount Quiz');
-  //     this.setState({
-  //       randomValue1: characters[randomInteger(1, 62)].nickname,
-  //       randomValue2: characters[randomInteger(1, 62)].nickname,
-  //       randomValue3: characters[randomInteger(1, 62)].nickname,
-  //     })
-  //   }
-  // }
-
   trueAnswer = str => () => {
-    alert(`Good job you really know ${
-      this.props.charItem.name
-        ? this.props.charItem.name
+    const {name} = this.props.charItem;
+    alert(`Good job you really know ${name
+        ? name
         : this.props.demoItem.name
     } !!!`);
     this.setState({
@@ -46,9 +25,10 @@ class Quiz extends React.Component {
     })
   };
   falseAnswer = () => {
+    const {name} = this.props.charItem;
     alert(`You don't know ${
-      this.props.charItem.name
-        ? this.props.charItem.name
+      name
+        ? name
         : this.props.demoItem.name
     } :(`);
   };
@@ -87,24 +67,35 @@ class Quiz extends React.Component {
       padding: '20px 30px 40px 30px',
       margin: '20px'
     };
-    let inclNick = this.state.isOpen.includes('nick');
-    let inclStatus = this.state.isOpen.includes('status');
-    let inclActor = this.state.isOpen.includes('actor');
-    console.log(this.state.isOpen, 'this.state.isOpen')
+    const {
+      isOpen,
+      isOpenNick,
+      isOpenStatus,
+      isOpenActor
+    } = this.state;
+    const titleStyle3 = {
+      width: '100%'
+    };
+    const buttonStyleMarg = {
+      margin: '10px'
+    };
+    let inclNick = isOpen.includes('nick');
+    let inclStatus = isOpen.includes('status');
+    let inclActor = isOpen.includes('actor');
 
     return (
       <div>
-        <Title> Quiz: </Title>
+        <Title> Quiz </Title>
         <Title level={2}> What is true? </Title>
         <div className='quiz-main-button-div'>
-          {this.state.isOpenNick
+          {isOpenNick
             ? null
-            : <Button type="primary" onClick={this.isOpenNick} style={{margin: '10px'}}>
+            : <Button type="primary" onClick={this.isOpenNick} style={buttonStyleMarg}>
               Which nickname is correct? {inclNick ? ' ✓' : null}
-          </Button>}
-          {this.state.isOpenNick
+            </Button>}
+          {isOpenNick
             ? <div className='quiz-div'>
-              <Title level={3} style={{width: '100%'}}>Which nickname is correct?</Title>
+              <Title level={3} style={titleStyle3}>Which nickname is correct?</Title>
               <div className="div-button">
                 <Button type="primary" style={buttonStyle} onClick={this.falseAnswer}>
                   {randomNick1}
@@ -121,14 +112,14 @@ class Quiz extends React.Component {
               </div>
             </div>
             : null}
-          {this.state.isOpenStatus
+          {isOpenStatus
             ? null
-            : <Button type="primary" onClick={this.isOpenStatus} style={{margin: '10px'}}>
+            : <Button type="primary" onClick={this.isOpenStatus} style={buttonStyleMarg}>
               Which status is correct? {inclStatus ? ' ✓' : null}
-          </Button>}
-          {this.state.isOpenStatus
+            </Button>}
+          {isOpenStatus
             ? <div className='quiz-div'>
-              <Title level={3} style={{width: '100%'}}>Which status is correct?</Title>
+              <Title level={3} style={titleStyle3}>Which status is correct?</Title>
               <div className="div-button">
                 <Button type="primary" style={buttonStyle} onClick={this.trueAnswer('status')}>
                   {status ? status : this.props.demoItem.status}
@@ -139,14 +130,14 @@ class Quiz extends React.Component {
               </div>
             </div>
             : null}
-          {this.state.isOpenActor
+          {isOpenActor
             ? null
-            : <Button type="primary" onClick={this.isOpenActor} style={{margin: '10px'}}>
+            : <Button type="primary" onClick={this.isOpenActor} style={buttonStyleMarg}>
               Which actor is correct? {inclActor ? ' ✓' : null}
             </Button>}
-          {this.state.isOpenActor
+          {isOpenActor
             ? <div className='quiz-div'>
-              <Title level={3} style={{width: '100%'}}>Which actor is correct?</Title>
+              <Title level={3} style={buttonStyle}>Which actor is correct?</Title>
               <div className="div-button">
                 <Button type="primary" style={buttonStyle} onClick={this.falseAnswer}>
                   {randomActor1}

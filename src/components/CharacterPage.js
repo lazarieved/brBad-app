@@ -23,9 +23,21 @@ class CharacterPage extends React.Component{
   }
 
   render() {
-    const {characterItem} = this.props;
+    const {characterItem, id} = this.props;
     let charItem = characterItem[0] || {};
-    console.log(charItem, 'charItem');
+    const {
+      img,
+      name,
+      nickname,
+      birthday,
+      occupation,
+      status,
+      portrayed,
+    } = charItem;
+    const buttonStyle = {
+      padding: '10px 20px 35px 20px',
+      fontSize: '18px'
+    };
 
     return (
       <div className='container-character-page'>
@@ -33,24 +45,24 @@ class CharacterPage extends React.Component{
           <Link to={`/`}>⤶ Back</Link>
         </Button>
         <div className='left-side-character-page'>
-          <img className='character-page-img' src={charItem.img} />
-          <Title>{charItem.name}</Title>
-          <Title level={3}>nickname: {charItem.nickname}</Title>
+          <img className='character-page-img' src={img} />
+          <Title>{name}</Title>
+          <Title level={3}>nickname: {nickname}</Title>
           <Button
             type="primary"
-            style={{padding: '10px 20px 35px 20px', fontSize: '18px'}}
+            style={buttonStyle}
           >
-            <Link to='/check-yourself'>Haw do you naw this character?</Link>
+            <Link to={`/check-yourself/${id}`}>Haw do you naw this character?</Link>
           </Button>
         </div>
         <div className='right-side-character-page'>
           <Title> Description:</Title>
           <span className='right-side-character-page-span'>
-            Was born: {charItem.birthday ? charItem.birthday : 'unknown'}
+            Was born: {birthday ? birthday : 'unknown'}
           </span>
-          <span className='right-side-character-page-span'> Occupation: {charItem.occupation}</span>
-          <span className='right-side-character-page-span'> Status: {charItem.status}</span>
-          <span className='right-side-character-page-span'> Actor: {charItem.portrayed}</span>
+          <span className='right-side-character-page-span'> Occupation: {occupation}</span>
+          <span className='right-side-character-page-span'> Status: {status}</span>
+          <span className='right-side-character-page-span'> Actor: {portrayed}</span>
           <span className='right-side-character-page-span'>
             Killed: {demoDeath.deathCount} {demoDeath.deathCount > 1 ? 'peaple' : 'perosn'}
           </span>
